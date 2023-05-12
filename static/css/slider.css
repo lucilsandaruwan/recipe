@@ -1,0 +1,93 @@
+
+.mySlides {display: none;}
+.mySlides img {
+    vertical-align: middle;
+    width: 100%;
+}
+/* Slideshow container */
+.slideshow-container {
+    max-width: 90em;
+    position: relative;
+    margin: 0 auto;
+}
+  
+
+  /* Caption text */
+.text-wrapper {
+    background-color: #fff;
+    opacity: 0.8;
+    width: 100%;
+    max-width:90em;
+    position: absolute;
+    bottom: 0;
+}
+.text-wrapper .text {
+    width: 100%;
+    max-width: 990px;
+    margin: 0 auto;
+    opacity: 2;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+/* set top margin to slider dot */
+.slider-dots {
+    margin-top: 1em;
+}
+
+.slider-dots .active {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+.sl_txt_content {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1em;
+}
+/* try the recipe link style for desktop */
+.try-the-recipe {
+    background: #2fc974;
+    color: #fff;
+    display: block;
+    padding: 20px 10px;
+    text-align: center;
+    text-decoration: none;
+    /* width: 350px; */
+    border-radius: 8px; 
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+  
+  
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 30em) {
+    .text-wrapper {
+        font-size: 0.75em
+    }
+    .text-wrapper .text h2, .text-wrapper .text p{
+        margin: 0.1em
+    }
+}

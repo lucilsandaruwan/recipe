@@ -1,0 +1,232 @@
+/* set the background color of body */
+body {
+    background-color: #DFDDD8;
+    margin: 0;
+}
+
+/* set site area and make the background color white */
+.main {
+    font-family: Arial,sans-serif;
+    background-color: #fff;
+    /* set max width if the screen size is lager than normal */
+    max-width: 90em;
+    /* get the site content to center */
+    margin: 0 auto;
+    position: relative;
+    /* set the height to view port height */
+    min-height: 100vh;
+}
+
+/* stile of middle main container */
+.middle_container {
+    max-width: 990px;
+    margin: 0 auto;
+}
+
+/* stiles of top navigation section including sign_in and register links */
+.global-header {
+    background-color: #00294f;
+    border-bottom: 4px solid #00539f;
+    position: relative;
+    /* max-width: 990px; */
+    margin: 0 auto;
+    display: flex;
+    /* push the content to right end */
+    justify-content: flex-end;
+    font-size: 0.82rem;
+    line-height: 0,82rem;
+}
+.global-header ul {
+    color: #fff;
+    /* load li elements horizontally */
+    display: flex;
+    margin: 0;
+    padding: 0;
+    margin-right: 3em;
+}
+/* stiles of li elements of menue to remove list stiles and overite default padding and margins */
+.global-header li {
+    list-style: none;
+    float: left;
+    margin: 0.5em;
+    display: block;
+    border-left: 1px solid;
+    padding-left: 0.5em;
+}
+
+/* change the color of links in global header */
+.global-header a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* stiles for active and hover links */
+.global-header a:hover, .global-header a.active {
+    text-decoration: underline;
+
+}
+/* stiles for header content section including log and main navigation */
+.header .content {
+    max-width: 990px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header .content .logo img {
+    width: 40%;
+    min-width: 150px;
+}
+.header .content .icon {
+    display: none;
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+.line {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 3px 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+.mob-header-icons {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+/* search button icon style for mobile */
+.search-icon img{
+    width: 2em;
+}
+
+
+/* Add a black background color to the top navigation */
+.topnav {
+    /* background-color: #333; */
+    overflow: hidden;
+    max-width: 990px;
+    margin: 0 auto;
+    border-bottom: 4px solid #008dc8;
+}
+  
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    color: #00539f;
+}
+  
+/* Change the color of links on hover */
+.topnav a:hover {
+    text-decoration: underline;
+}
+
+/* container style */
+.page-container {
+    max-width: 90em;
+    margin: 0 auto;
+}
+
+/* style the search box for desktop */
+.cont-search_wrapper {
+    margin-top: 10px;
+    margin-right: 3px;
+    display: flex;
+    width: 55%;
+    flex-direction: row-reverse;
+}
+/* align input and submit button of search form */
+.cont-search_wrapper form, .cont-search_wrapper .searchbox {
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+}
+/* round corners and shadows for search input */
+.cont-search_wrapper input {
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 2%;
+    padding: 3%;
+    width: 70%;
+    color: #333;
+    box-shadow: 0px 0px 5px #888;
+}
+
+/* round corners and shadows for search submit button */
+.cont-search_wrapper button {
+    background-color: #00539f;
+    border: none;
+    border-radius: 1%;
+    padding: 3%;
+    width: 23%;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px #888;
+}
+
+/* hide mobile search bar in page load */
+.mob-search-wrapper {
+    display: none;
+}
+
+  /* mobile devices */
+  @media (max-width: 48em) {
+    .main {
+        width: 100%;
+    }
+    .global-header ul {
+        margin-right: 0.3em;
+    }
+    .topnav a {display: none;}
+    .topnav.responsive {position: relative;}
+    .topnav.responsive a.icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .topnav.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+    .header .content .icon {
+        display: block;
+        margin: .5em .5em 0 0;
+    }
+
+    .cont-search_wrapper {
+        display: none;
+    }
+    
+    .mob-search-wrapper.responsive {
+        display: block;
+        width: 100%;
+        border-bottom: 4px solid #008dc8;
+    }
+    .mob-search-wrapper.responsive .cont-search_wrapper {
+        display: block;
+        width: 92%;
+        margin: 4%;
+    }
+  }
+  @media (min-width: 48em) {
+    .topnav {
+        display: flex;
+        justify-content: space-between;
+    }
+  }
+  

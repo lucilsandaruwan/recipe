@@ -1,0 +1,46 @@
+/* stile of recipe containers to use flex layout */
+.recipe-container {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.card-block {
+    width: 31%;
+    margin: 1%;
+    
+}
+
+.card-block img {
+    width: 100%;
+    border: 1px solid #00539f;
+}
+
+.card-block .title {
+    padding: 1em;
+    border: 1px  dotted #00539f;
+}
+
+
+/* stile title of recipe banners to get the text into center */
+.recipe-banners h2{
+    width: 100%;
+    text-align: center;
+}
+
+/* mobile - tabs */
+@media (max-width: 48em) {
+    .card-block {
+        width: 47%;
+        margin: 1%;
+    }
+}
+
+/* mobile - phonse */
+@media (max-width: 30em) {
+    .card-block {
+        width: 95%;
+        margin: 1%;
+    }
+}

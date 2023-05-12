@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- include css files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/slider.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/recipes_containers.css') }}">
+    {% if page_css %}
+        {% for css in page_css %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename=css) }}">
+        {% endfor %}
+    {% endif %}
+    <!-- include js files -->
+    <script src="{{ url_for('static', filename='scripts/menue.js') }}"></script>
+    {% if page_js %}
+        {% for js in page_js %}
+        <script src="{{ url_for('static', filename=js) }}"></script>
+        {% endfor %}
+    {% endif %}
+</head>
+
+<body>
+    <!-- main wrapper to set the site area -->
+    <div class="main">
+        <!-- header section to load navigations and log -->
+        <div class="header">
+            <!-- top most navigation bar -->
+            <div class="global-header">
+                <ul>
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('home.home') }}">Profile</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('auth.register') }}"> Register </a></li>
+                    <li><a href="{{ url_for('auth.login') }}"> Login </a></li>
+                {% endif %}
+                </ul>
+            </div>
+            <!-- top most navigation bar end -->
+
+            <!-- header contents including logo and search bar -->
+            <div class="content">
+                <!-- logo image -->
+                <div class="logo">
+                    <a href="/"><img src="{{ url_for('static', filename='images/site/logo.jpg') }}" /></a>
+                </div>
+                <!-- search block visible in desktop -->
+                <div class="cont-search_wrapper">
+                    {% include 'search_snippet.html'  %}
+                </div>
+                <!-- wrapper for icons to display in mobile devices -->
+                <div class="mob-header-icons">
+                    <!-- hamburger menue button visible in mobile devices (phons and tabs) -->
+                    <a href="javascript:void(0);" class="icon" onclick="navbarToggle()">
+                        <div class="hamburger">
+                            <span class="line"></span>
+                            <span class="line"></span>
+                            <span class="line"></span>
+                        </div>
+                    </a>
+                    <!-- search button icon for phones -->
+                    <a href="javascript:void(0);" class="icon" onclick="searchbarToggle()">
+                        <div class="search-icon"><img src="{{ url_for('static', filename='images/site/search.jpg') }}"/></div>
+                    </a>
+                    
+                </div>
+                
+            </div>
+            <!-- header contents including logo and search bar end -->
+
+            <!-- main navigation bar -->
+            <div class="topnav" id="myTopnav">
+                <a href="{{ url_for('pages.home') }}" class="active">Home</a>
+                <a href="#news">Healthy </a>
+                <a href="#contact">Vegitatian </a>
+                <a href="#about">Baking </a>
+                <a href="#about">Other recipes</a>
+                <a href="#about">About</a>
+                <a href="#about">Contact</a>
+                <!-- <a href="#about">Create</a> -->
+            </div>
+            <!-- search box for mobile devices -->
+            
+            <!-- search block visible in desktop -->
+            <div class="mob-search-wrapper" id="mobSearchBox">
+                <div class="cont-search_wrapper">
+                    {% include 'search_snippet.html'  %}
+                </div>
+            </div>
+        </div>
+        <!-- section to load page contents -->
+        <div class="page-container">
+            {% block content %}{% endblock %}
+        </div>
+        <!-- section to load page contents end -->
+        <div class="footer">
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

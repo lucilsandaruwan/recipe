@@ -1,0 +1,83 @@
+{% extends 'base_n.html' %}
+
+{% block content %}
+<!-- slide show on the main page -->
+<div class="slideshow-container">
+    {% for cat in categories %}
+        <div class="mySlides fade">
+            <img src="{{ url_for('static', filename=cat.image) }}" >
+            <div class="text-wrapper">
+                <div class="text">
+                    <h2>{{cat.title}}</h2>
+                    <div class=sl_txt_content>
+                        <div>{{cat.slogan}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<div style="text-align:center" class="slider-dots">
+    {% for cat in categories %}
+        <span class="dot"></span>
+    {% endfor %}
+</div>
+
+<!-- slide show on the main page end-->
+
+<!-- just added recipes -->
+<div class="just-added middle_container recipe-banners" >
+    <h2>Fresh from the Kitchen: Our Latest Recipe Additions</h2>
+    <div class="recipe-container">
+        {% for recipe in ja_recipes %}
+            {% set title=recipe.title%}
+            {% set img= url_for('static', filename= "images/uploads/dishes/" + recipe.image)%}
+            {% include 'snippets/recipe_card.html' %}
+        {% endfor %}
+    </div>
+</div>
+<!-- healthy product card -->
+{% if  h_recipes:%}
+    <div class="healthy-space middle_container recipe-banners" >
+        <h2>How about "Healthy Delights: Discover Our Latest Recipe Creations"?</h2>
+        <div class="recipe-container">
+            {% for recipe in h_recipes %}
+                {% set title=recipe.title%}
+                {% set img= url_for('static', filename= "images/uploads/dishes/" + recipe.image)%}
+                {% include 'snippets/recipe_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+<!-- vegi recipe card -->
+
+{% if  v_recipes:%}
+    <div class="healthy-space middle_container recipe-banners" >
+        <h2>Going Green: Explore Our Favorite Vegetarian Recipes</h2>
+        <div class="recipe-container">
+            {% for recipe in v_recipes %}
+                {% set title=recipe.title%}
+                {% set img= url_for('static', filename= "images/uploads/dishes/" + recipe.image)%}
+                {% include 'snippets/recipe_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+<!-- baking -->
+
+{% if  b_recipes:%}
+    <div class="healthy-space middle_container recipe-banners" >
+        <h2>Freshly Baked: Our Newest Additions to the Recipe Box</h2>
+        <div class="recipe-container">
+            {% for recipe in b_recipes %}
+                {% set title=recipe.title%}
+                {% set img= url_for('static', filename= "images/uploads/dishes/" + recipe.image)%}
+                {% include 'snippets/recipe_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}
