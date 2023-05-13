@@ -4,7 +4,6 @@ from utils.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, current_user
 from utils.decorators import redirect_if_authenticated
 
-
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @auth_bp.route('/register', methods=['GET', 'POST'])

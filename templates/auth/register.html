@@ -1,3 +1,4 @@
+{% from "form_helpers.html" import render_field %}
 {% extends 'base_n.html' %}
 
 {% block content %}
@@ -5,18 +6,11 @@
   <h2>Register</h2>
   <form method="POST" action="{{ url_for('auth.register') }}">
     {{ form.csrf_token }}
-    <div class="form-group">
-      {{ form.username.label }} {{ form.username(size=20) }}
-    </div>
-    <div class="form-group">
-      {{ form.email.label }} {{ form.email(size=20) }}
-    </div>
-    <div class="form-group">
-      {{ form.password.label }} {{ form.password(size=20) }}
-    </div>
-    <div class="form-group">
-      {{ form.confirm_password.label }} {{ form.confirm_password(size=20) }}
-    </div>
+    {{ render_field(form.username) }}
+    {{ render_field(form.email) }}
+    {{ render_field(form.password) }}
+    {{ render_field(form.confirm_password) }}
+    
     <div class="action-button">
       <button type="reset"  class="reset">Cancel</button>
       <button type="submit" class="submit">Register</button>

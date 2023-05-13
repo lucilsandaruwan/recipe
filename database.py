@@ -16,3 +16,5 @@ DateTime = db.DateTime
 Text = db.Text
 ForeignKey = db.ForeignKey
 relationship = db.relationship
+or_ = db.or_
+and_ = db.and_

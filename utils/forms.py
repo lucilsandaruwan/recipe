@@ -13,3 +13,8 @@ class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
+
+class Search(FlaskForm):
+    key = StringField('Keyword')
+    submit = SubmitField('Search')
+    method = 'GET'

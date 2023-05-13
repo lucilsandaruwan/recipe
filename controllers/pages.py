@@ -4,6 +4,8 @@ from utils.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, current_user
 from models.recipe_category import RecipeCategory
 from models.recipe import Recipe
+from models.user import User
+from database import or_, and_
 
 pages_bp = Blueprint('pages', __name__,)
 
@@ -36,13 +38,35 @@ def home():
 
 @pages_bp.route('/search', methods=['GET'])
 def search():
-    ja_recipes = []
-    for i in range(3):
-       ja_recipes.append(
-           {
-                "title": "Test title1" + str(i)
-                ,"img": "https://realfood.tesco.com/media/images/1400x919-Mexican-inspired-black-bean-bake-d8a3f379-2d52-42e5-9ed6-46e79f920499-0-1400x919.jpg"
-            }
-       ) 
-    return render_template('pages/home.html', ja_recipes=ja_recipes)
+    per_page = 1
+
+    search_query = request.args.get('q')
+    page = request.args.get('page', 1, type=int)
+
+    query = Recipe.query.join(RecipeCategory).join(User).filter(
+        or_(
+            RecipeCategory.title.ilike(f'%{search_query}%')
+            ,Recipe.title.ilike(f'%{search_query}%')
+            ,User.name.ilike(f'%{search_query}%')
+        )
+    ).order_by(Recipe.created_at.desc())
+
+    recipes = query.paginate(page=page, per_page=per_page)
+    total_count = recipes.total
+    next = recipes.next_num if recipes.has_next else None
+    prev = recipes.prev_num if recipes.has_prev else None
+
+    # Calculate the range of records being displayed
+    start_index = (page - 1) * per_page + 1
+    end_index = min(start_index + per_page - 1, total_count)
+    showing = f"{start_index} - {end_index} of {total_count} recipes for \"{search_query}\""""
+
+    return render_template(
+        'pages/search_results.html'
+        , search_results=recipes.items
+        , showing=showing
+        , next = next
+        , prev = prev
+        , q = search_query
+    )
 
