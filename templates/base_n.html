@@ -30,7 +30,7 @@
             <div class="global-header">
                 <ul>
                 {% if current_user.is_authenticated %}
-                    <li><a href="{{ url_for('home.home') }}">Profile</a></li>
+                    <li><a href="{{ url_for('pages.home') }}">Profile</a></li>
                     <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
                 {% else %}
                     <li><a href="{{ url_for('auth.register') }}"> Register </a></li>
@@ -73,12 +73,11 @@
             <!-- main navigation bar -->
             <div class="topnav" id="myTopnav">
                 <a href="{{ url_for('pages.home') }}" class="active">Home</a>
-                <a href="#news">Healthy </a>
-                <a href="#contact">Vegitatian </a>
-                <a href="#about">Baking </a>
-                <a href="#about">Other recipes</a>
+                <a href="{{ url_for('pages.healthy') }}">Healthy </a>
+                <a href="{{ url_for('pages.vegitarian') }}">Vegitatian </a>
+                <a href="{{ url_for('pages.baking') }}">Baking </a>
+                <a href="{{ url_for('pages.miscellaneous') }}">Miscellaneous</a>
                 <a href="#about">About</a>
-                <a href="#about">Contact</a>
                 <!-- <a href="#about">Create</a> -->
             </div>
             <!-- search box for mobile devices -->
@@ -92,6 +91,15 @@
         </div>
         <!-- section to load page contents -->
         <div class="page-container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                    {{ message }}
+                    </div>
+                {% endfor %}
+                {% endif %}
+            {% endwith %}
             {% block content %}{% endblock %}
         </div>
         <!-- section to load page contents end -->

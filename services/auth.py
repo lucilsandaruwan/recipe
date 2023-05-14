@@ -25,6 +25,7 @@ class AuthService:
             user.authenticated = False
             user.save()
 
+    
     def get_user_by_id(self, user_id):
         # Query the database to get the user with the given id
         user = User.query.get(user_id)

@@ -46,7 +46,7 @@ with app.app_context():
         b_recipe = RecipeCategory.query.filter_by(title=b_recipe.title).first()
 
     o_recipe = RecipeCategory(
-        title='Other'
+        title='Miscellaneous'
         , slogan='Delicious and diverse dishes that range from simple to complex, inspired by global cuisines and seasonal ingredients.'
         , image="images/site/other.jpeg"
     )

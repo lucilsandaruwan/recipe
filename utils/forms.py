@@ -9,12 +9,18 @@ class RegistrationForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
 
+class UpdateProfile(FlaskForm):
+    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Change')
+
+class ChangePassword(FlaskForm):
+    curent_password = StringField('Current Passworkd', validators=[DataRequired(), Length(min=2, max=20)])
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('New Password', validators=[DataRequired(), EqualTo('password')])
+
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
 
-class Search(FlaskForm):
-    key = StringField('Keyword')
-    submit = SubmitField('Search')
-    method = 'GET'
