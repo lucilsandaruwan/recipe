@@ -14,6 +14,11 @@
     padding: 1em;
 }
 
+/* style a inside the block */
+.card-block a {
+    text-decoration: none;
+}
+
 .card-block img {
     border: 1px solid #00539f;
     max-width: 100%;
@@ -22,7 +27,6 @@
 
 .card-block .title {
     padding: 1em;
-    border: 1px  dotted #00539f;
 }
 
 
