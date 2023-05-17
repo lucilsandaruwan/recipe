@@ -1,0 +1,35 @@
+{% from "form_helpers.html" import render_field, render_field_list %}
+{% extends 'base_n.html' %}
+
+{% block content %}
+<div class="content">
+  <h2>Create Recipe</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    {{ render_field(form.category) }}
+    {{ render_field(form.title) }}
+    {{ render_field(form.recipe_image) }}
+    {{ render_field(form.description) }}
+    <div class="ingradiants-group form-list-group">
+        {%for i in form.ingredients %}
+        {{ render_field_list(i, "Ingradiant " + loop.index|string, "delete_ingradient" ) }}
+        {%endfor%}
+        <div class="add-ingradient add-f-group-item"> <a href="#" onclick="add_ingradient(this)">Add Ingradient</a></div>
+    </div>
+
+    <div class="method-group form-list-group" >
+        {%for i in form.methods %}
+        {{ render_field_list(i, "Method, Step " + loop.index|string, "delete_step") }}
+        {%endfor%}
+        <div class="add-ingradient add-f-group-item"> <a href="#" onclick="add_method(this)">Add Step</a></div>
+    </div>
+
+    <div class="action-button">
+      <button type="reset"  class="reset">Cancel</button>
+      <button type="submit" class="submit">Create</button>
+    </div>
+    
+  </form>
+</div>
+{% endblock %}
+

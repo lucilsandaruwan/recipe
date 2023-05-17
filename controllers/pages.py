@@ -44,29 +44,6 @@ def home():
         , page_js = page_js
     )
 
-@pages_bp.route('/search', methods=['GET'])
-def search():
-    per_page = RecipeService.per_page
-    search_query = request.args.get('q')
-    page = request.args.get('page', 1, type=int)
-    recipes = RecipeService().search_recipes(search_query, page)
-    total_count = recipes.total
-    next = recipes.next_num if recipes.has_next else None
-    prev = recipes.prev_num if recipes.has_prev else None
-
-    # Calculate the range of records being displayed
-    start_index = (page - 1) * per_page + 1
-    end_index = min(start_index + per_page - 1, total_count)
-    showing = f"{start_index} - {end_index} of {total_count} recipes for \"{search_query}\""""
-
-    return render_template(
-        'pages/search_results.html'
-        , search_results=recipes.items
-        , showing=showing
-        , next = next
-        , prev = prev
-        , q = search_query
-    )
 
 @pages_bp.route('/healthy', methods=['GET'])
 def healthy():

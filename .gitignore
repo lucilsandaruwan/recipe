@@ -137,3 +137,6 @@ migrations
 
 #instance files
 instance
+
+#upload file
+static/images/uploads/

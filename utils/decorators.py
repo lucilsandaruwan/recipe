@@ -33,7 +33,7 @@ def authenticated_users_only(func):
     def decorated_view(*args, **kwargs):
         if not current_user.is_authenticated:
             flash('Please log in to access this page', 'info')
-            return redirect(url_for('auth.login', next=current_app.view_functions[func.__name__].url))
+            return redirect(url_for('auth.login'))
         return func(*args, **kwargs)
 
     return decorated_view

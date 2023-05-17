@@ -12,5 +12,3 @@ class Methods(Model, UserMixin):
         session.add(self)
         session.commit()
     
-    def get_id(self):
-        return self.id

@@ -1,6 +1,6 @@
 {% macro render_field(field) %}
 <div class="form-group {{ 'form-group-error' if field.errors else '' }}">
-  <dt>{{ field.label }}
+  <dt>{{ field.label }}</dt>
   <dd>{{ field(**kwargs)|safe }}
   {% if field.errors %}
   {% for error in field.errors %}
@@ -9,4 +9,26 @@
   {% endif %}
   </dd>
 </div>
-{% endmacro %}
+{% endmacro %}  
+
+
+{% macro render_field_list(field_list, lable, delete_function) %}
+<div class = "field-list" >
+  <div class="form-group-lable"> {{lable}}</div>
+  <div class="form-group-wrapper">
+    {%for field in field_list%}
+      <div class="form-group {{ 'form-group-error' if field.errors else '' }}">
+        <dt>{{ field.label }}</dt>
+        <dd>{{ field(**kwargs)|safe }}
+        {% if field.errors %}
+        {% for error in field.errors %}
+          <span>{{ error }}</span>
+        {% endfor %}
+        {% endif %}
+        </dd>
+      </div>
+    {%endfor%}
+  </div>
+  <div class="form-group-action"> <a href="#" onclick="{{delete_function}}(this)"> Delete </a></div>
+</div>
+{% endmacro %}  

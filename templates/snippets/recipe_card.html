@@ -1,4 +1,13 @@
-<div class="card-block">
-    <img src="{{ img }}"/>
-    <div class=title>{{ title }}</div>
-</div>
+
+    <div class="card-block">
+        <a href = "{{ url_for('recipes.get_recipe', recipe_id = id) }}">
+        <img src="{{ img }}"/>
+        <div class=title>{{ title }}</div>
+        {% if actions: %}
+            <div class="actions"> 
+                <a class="edit" href="#" r_id = "{{id}}">Edit</a>
+                <a class="delete" href="#" r_id = "{{id}}" >Delete</a>
+            </div>
+        {% endif%}
+        </a>
+    </div>

@@ -12,6 +12,3 @@ class Ingredients(Model, UserMixin):
     def save(self):
         session.add(self)
         session.commit()
-    
-    def get_id(self):
-        return self.id

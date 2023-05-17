@@ -1,0 +1,11 @@
+<p class="pagination">
+    {% set args = request.args.copy() %}
+    {% if prev %}
+        {% set _ = args.update({'page': prev}) %}
+        <a class="prev" href="{{ url_for(request.endpoint, **args) }}">Prev</a>
+    {% endif %}
+    {% if next %}
+        {% set __ = args.update({'page': next}) %}
+        <a class="next" href="{{ url_for(request.endpoint, **args) }}">Next</a>
+    {% endif %}
+</p>

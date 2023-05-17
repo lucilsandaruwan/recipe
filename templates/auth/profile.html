@@ -1,0 +1,25 @@
+{% from "form_helpers.html" import render_field %}
+{% extends 'base_n.html' %}
+
+{% block content %}
+<div class="content">
+  <div class="middle_container">
+      <h2>Profile</h2>
+      <div class="prifle-actions">
+          <div>
+              <a href="{{ url_for('auth.update_profile') }}">Mange</a>
+              <a href="{{ url_for('auth.change_password') }}">Change Password</a>
+          </div>
+      </div>
+      <div class="lable-group">
+        <div class="lable">Name</div>
+        <div class="value">{{user.name}}</div>
+      </div>
+
+      <div class="lable-group">
+        <div class="lable">Email</div>
+        <div class="value">{{user.email}}</div>
+      </div>
+  </div>
+</div>
+{% endblock %}

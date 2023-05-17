@@ -1,0 +1,26 @@
+/* style the description of product details */
+.description {
+    margin-bottom: 2em;
+    color: #a39898;
+}
+
+/* style the details image */
+.details-recipe-image {
+    width: 80%;
+    /* horizontal align center */
+    margin: 2em auto
+}
+
+.details-recipe-image img{
+    max-width: 100%;
+}
+
+/* style the method and ingradient list*/
+.group-container {
+    margin-bottom: 2em;
+}
+
+/* page-end */
+.page-end {
+    height: 4em;
+}

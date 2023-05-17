@@ -28,6 +28,7 @@ body {
 .middle_container .pagination {
     display: flex;
     justify-content: center;
+    height: 3em;
 }
 
 .middle_container .pagination a {
@@ -200,8 +201,15 @@ body {
 .footer-placeholder {
     display: block;
     width: 100%;
-    height: 100px;
+    height: 1px;
 }
+
+.home-footer-placeholder {
+    display: block;
+    width: 100%;
+    height: 6em;
+}
+
 .footer {
     justify-content: center;
     position: absolute;

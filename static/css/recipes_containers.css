@@ -3,18 +3,21 @@
     width: 100%;
     position: relative;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
 }
 .card-block {
-    width: 31%;
+    width: 27%;
     margin: 1%;
-    
+    text-align: center;
+    /* border: 1px solid; */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 1em;
 }
 
 .card-block img {
-    width: 100%;
     border: 1px solid #00539f;
+    max-width: 100%;
+    max-height: 28vh;
 }
 
 .card-block .title {
@@ -32,7 +35,7 @@
 /* mobile - tabs */
 @media (max-width: 48em) {
     .card-block {
-        width: 47%;
+        width: 40%;
         margin: 1%;
     }
 }
@@ -41,6 +44,6 @@
 @media (max-width: 30em) {
     .card-block {
         width: 95%;
-        margin: 1%;
+        margin:1em 1%;
     }
 }

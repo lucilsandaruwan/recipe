@@ -7,10 +7,15 @@ from database import db
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///recipe.db'
 app.config['SECRET_KEY'] = 'recipe_123'
+app.config['UPLOAD_PATH'] = 'static/images/uploads/'
 
 db.init_app(app)
 
 login_manager = LoginManager()
+login_manager.login_view = "auth.login"
+login_manager.login_message = u"Please log in to access this page."
+login_manager.login_message_category = "error"
+
 login_manager.init_app(app)
 
 # Tell Flask-Login where to locate the user loader function
@@ -24,6 +29,9 @@ app.register_blueprint(auth_blueprint)
 
 from controllers.pages import pages_bp as pages_blueprint
 app.register_blueprint(pages_blueprint)
+
+from controllers.recipes import recipes_bp as recipes_blueprint
+app.register_blueprint(recipes_blueprint)
 
 
 

@@ -1,0 +1,34 @@
+{% from "form_helpers.html" import render_field %}
+{% extends 'base_n.html' %}
+
+{% block content %}
+<div class="content middle_container">
+  <h1>{{recipe.title}}</h1>
+  <div class="description">{{recipe.description}}</div>
+  <div class="details-recipe-image"><img src="{{ url_for('static', filename= 'images/uploads/dishes/' + recipe.image) }}"/></div>
+  {%if recipe.ingredients %}
+    <div class="group-container">
+        <div class="group-lable"><h3>Ingredients</h3></div>
+        <ol>
+            {%for i in recipe.ingredients %}
+                <li>{{i.quantity}}{{i.unit}} {{i.name}}</li>
+            {%endfor%}
+        </ol>
+    </div>
+  {%endif%}
+  {%if recipe.methods %}
+    <div class="group-container">
+        <div class="group-lable"><h3>Method</h3></div>
+        <ol>
+            {%for m in recipe.methods %}
+                <li> 
+                    {% if m.title %} <h4>{{m.title}}</h4> {%endif%}
+                    <p>{{m.discription}}</p>
+                </li>
+            {%endfor%}
+        </ol>
+    </div>
+  {%endif%}
+  <div class="page-end"></div>
+</div>
+{% endblock %}

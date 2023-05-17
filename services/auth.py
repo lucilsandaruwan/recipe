@@ -11,9 +11,22 @@ class AuthService:
         user.save()
 
     @staticmethod
+    def update_profile(user, name, email):
+        user.name = name
+        user.email = email
+        user.update()
+        return user
+    
+    @staticmethod
+    def change_password(user, password):
+        user.password = generate_password_hash(password)
+        user.update()
+        return user
+
+    @staticmethod
     def login_user(email, password):
         user = User.get_by_email(email)
-        if user and check_password_hash(user.password, password):
+        if user and user.check_password(password):
             user.authenticated = True
             user.save()
             return user
@@ -41,3 +54,5 @@ class AuthService:
     @staticmethod
     def verify_password(user, password):
         return check_password_hash(user.password, password)
+
+    
