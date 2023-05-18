@@ -9,7 +9,7 @@ from wtforms import StringField\
     , IntegerField\
     , FieldList\
     , FormField
-from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
+from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError, Optional
 from flask_login import current_user
 from services.auth import AuthService
 from services.recipe import RecipeService
@@ -60,11 +60,11 @@ class IngredientForm(FlaskForm):
     class Meta:
         csrf = False
     name = StringField('Name', validators=[DataRequired(), Length(min = 2, max=50)])
-    quantity = IntegerField("Quantity", validators=[DataRequired()])
+    quantity = IntegerField("Quantity", validators=[DataRequired(), Optional()])
     unit = StringField('Units', validators=[Length( max=20)])
 
 class MethodForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired(), Length(min = 2, max=50)])
+    title = StringField('Title', validators=[DataRequired(), Length(min = 2, max=50), Optional()])
     discription = TextAreaField("Description", validators=[DataRequired()])
     class Meta:
         csrf = False
@@ -91,6 +91,17 @@ class RecipeCreateForm(FlaskForm):
         file_path = os.path.join(temp_path, f_name)
         file_data.save(file_path)
         try:
+            # Validate the file extension
+            allowed_extensions = ['.jpg', '.jpeg', '.png']
+            _, extension = os.path.splitext(file_data.filename)
+            if extension.lower() not in allowed_extensions:
+                raise ValidationError('Invalid file extension. Only {} file extensions are allowed.'.format(", ".join(allowed_extensions)))
+           
+             # Validate the file size
+            size_in_mb = os.path.getsize(file_path) / 1024 / 1024
+            if size_in_mb > 1.5:
+                raise ValidationError('''The image size should be less than 1.5MB.''')
+
             # Validate the width/height ratio within the range
             image = Image.open(file_path)
             width, height = image.size
@@ -99,19 +110,15 @@ class RecipeCreateForm(FlaskForm):
                 raise ValidationError('''The image dimensions are not suitable. 
                     Please provide an image with a width-to-height ratio between approximately 2:3 and 3:2.''')
 
-            # Validate the file size
-            size_in_mb = os.path.getsize(file_path) / 1024 / 1024
-            if size_in_mb > 1.5:
-                raise ValidationError('''The image size should be less than 1.5MB.''')
+           
 
-            # Validate the file extension
-            allowed_extensions = ['.jpg', '.jpeg', '.png']
-            _, extension = os.path.splitext(file_data.filename)
-            if extension.lower() not in allowed_extensions:
-                raise ValidationError('Invalid file extension. Only {} file extensions are allowed.'.format(", ".join(allowed_extensions)))
-        except:
+            
+        except ValidationError:
             # Clean up the temporary file
             os.remove(file_path)
+            raise
+        except:
+            raise ValidationError("Unsupported file format")
         
         self.recipe_image_name = f_name
             

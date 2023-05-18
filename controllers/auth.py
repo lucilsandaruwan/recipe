@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from services.auth import AuthService
+from services.recipe import RecipeService
 from utils.forms import RegistrationForm, LoginForm, UpdateProfileForm, ChangePasswordForm
 from flask_login import login_user, logout_user, current_user, login_required
 from utils.decorators import guest_users_only
@@ -23,7 +24,7 @@ def register():
     elif form.errors.items():
         flash('Please correct the form errors and try again.', 'error')
 
-    return render_template('auth/register.html', form=form, page_css = page_css)
+    return render_template('auth/register.html', form=form, page_css = page_css, active_m='regiseter')
 
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
@@ -49,7 +50,7 @@ def login():
         else:
             flash('Invalid email or password', 'error')
 
-    return render_template('auth/login.html', form=form, page_css = page_css)
+    return render_template('auth/login.html', form=form, page_css = page_css, active_m='login')
 
 @auth_bp.route('/logout')
 @login_required
@@ -61,9 +62,35 @@ def logout():
 @auth_bp.route('/profile')
 @login_required
 def profile():
+    page_css = [
+        'css/profile.css'
+    ]
     c_user = current_user
 
-    return render_template('auth/profile.html', user = c_user)
+    per_page = RecipeService.per_page
+    page = request.args.get('page', 1, type=int)
+
+    recipes = RecipeService().get_user_created_recipes(current_user.id, page)
+    total_count = recipes.total
+    next = recipes.next_num if recipes.has_next else None
+    prev = recipes.prev_num if recipes.has_prev else None
+
+    # Calculate the range of records being displayed
+    start_index = (page - 1) * per_page + 1
+    end_index = min(start_index + per_page - 1, total_count)
+    showing = f"{start_index} - {end_index} of {total_count} recipes."
+
+    return render_template(
+        'auth/profile.html'
+        ,search_results=recipes.items
+        , user = c_user
+        , showing=showing
+        , next = next
+        , prev = prev
+        , page_css = page_css
+    )
+
+
 
 @auth_bp.route('/update_profile', methods=['GET', 'POST'])
 @login_required

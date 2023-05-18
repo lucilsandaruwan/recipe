@@ -2,7 +2,8 @@
 {% extends 'base_n.html' %}
 
 {% block content %}
-<div class="content">
+<div class="content middle_container">
+  {% include 'snippets/profile_back_link.html' %}
   <h2>Update Profile</h2>
   <form method="POST" action="">
     {{ form.csrf_token }}

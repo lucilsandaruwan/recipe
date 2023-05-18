@@ -4,22 +4,49 @@
 {% block content %}
 <div class="content">
   <div class="middle_container">
-      <h2>Profile</h2>
-      <div class="prifle-actions">
-          <div>
+      <h1>Profile</h1>
+      <div class="profile-actions">
+          <div class="action">
               <a href="{{ url_for('auth.update_profile') }}">Mange</a>
               <a href="{{ url_for('auth.change_password') }}">Change Password</a>
           </div>
       </div>
-      <div class="lable-group">
-        <div class="lable">Name</div>
-        <div class="value">{{user.name}}</div>
+      <div class="profile-details">
+        <div class="label-group">
+          <div class="label">Name</div>
+          <div class="value">{{ user.name }}</div>
+        </div>
+      
+        <div class="label-group">
+          <div class="label">Email</div>
+          <div class="value">{{ user.email }}</div>
+        </div>
       </div>
-
-      <div class="lable-group">
-        <div class="lable">Email</div>
-        <div class="value">{{user.email}}</div>
-      </div>
+      <h2>Your own recipes</h2>
+      <div class="profile-actions create-recipe"><a href="{{url_for('recipes.create')}}">Create Recipe</a></div>
+      <p>{{showing}}</p>
+      {% if  search_results:%}
+            <div class="middle_container recipe-banners" >
+                <div class="recipe-container">
+                    {% for recipe in search_results %}
+                        {% set title=recipe.title %}
+                        {% set img= url_for('static', filename= "images/uploads/dishes/" + recipe.image)%}
+                        {% set id = recipe.id %}
+                        {% set action = True %}
+                        {% include 'snippets/recipe_card.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+            <p class="pagination">
+                {% if prev %}
+                    <a class="prev" href="{{ url_for(request.endpoint, q=q, page=prev) }}">Prev</a>
+                {% endif %}
+                {% if next %}
+                    <a class="next" href="{{ url_for(request.endpoint, page=next) }}">Next</a>
+                {% endif %}
+            </p>
+        {% endif %}
+        <div class="footer-placeholder"></div>
   </div>
 </div>
 {% endblock %}

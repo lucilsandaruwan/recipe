@@ -14,7 +14,7 @@ class RecipeService:
     banners_card_limit = 6
 
     # Define the number of records to display per page in listing pages
-    per_page = 10
+    per_page = 1
     
     def get_latest_banner_recipes(self):
         # retrieve the latest recipes based on the created_at attribute

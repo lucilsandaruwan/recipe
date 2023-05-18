@@ -32,9 +32,8 @@ body {
 }
 
 .middle_container .pagination a {
-    display: flex;
-    justify-content: center;
     margin-left: 1em;
+    height: 1em;
 }
 
 /* stiles of top navigation section including sign_in and register links */
@@ -201,7 +200,7 @@ body {
 .footer-placeholder {
     display: block;
     width: 100%;
-    height: 1px;
+    height: 2em;
 }
 
 .home-footer-placeholder {
@@ -292,3 +291,17 @@ body {
     }
   }
   
+  /* style the back link button */
+  .back-link {
+      margin-top: 1em;
+  }
+  .back-link a, .pagination a{
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    background-color: #eaeaea;
+    color: #333;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+

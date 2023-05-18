@@ -6,7 +6,7 @@ function add_ingradient(element) {
     newIngNumber = "${newIngNumber}"
     // compose the html content to append to the page
     htmlString = `<div class="field-list">
-    <div class="form-group-lable">Ingradiant ${newIngNumber}</div>
+    <div class="form-group-lable">Ingredient ${newIngNumber}</div>
     <div class="form-group-wrapper">
       
         <div class="form-group ">
@@ -83,7 +83,7 @@ function add_group_item(element, new_item) {
 }
 
 function delete_ingradient(element) {
-    lableText = "Ingradiant "
+    lableText = "Ingredient "
     delete_group_item(element, lableText)
 }
 

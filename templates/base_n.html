@@ -1,7 +1,10 @@
+
+{% from "element_helpers.html" import render_link %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <link rel="icon" href="{{ url_for('static', filename='images/site/favicon.ico') }}" type="image/x-icon">
     <!-- include css files -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}">
@@ -30,12 +33,11 @@
             <div class="global-header">
                 <ul>
                 {% if current_user.is_authenticated %}
-                    <li><a href="{{ url_for('recipes.index') }}">Manage Recipes</a></li>
-                    <li><a href="{{ url_for('auth.profile') }}">Profile</a></li>
+                    <li> {{render_link(url_for('auth.profile'), 'Profile', '', '/auth/profile')}}</li>
                     <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
                 {% else %}
-                    <li><a href="{{ url_for('auth.register') }}"> Register </a></li>
-                    <li><a href="{{ url_for('auth.login') }}"> Login </a></li>
+                    <li> {{render_link(url_for('auth.register'), 'Register', '', '/auth/register')}}</li>
+                    <li>{{render_link(url_for('auth.login'), 'Lgoin', '', '/auth/login')}}</li>
                 {% endif %}
                 </ul>
             </div>
@@ -73,12 +75,13 @@
 
             <!-- main navigation bar -->
             <div class="topnav" id="myTopnav">
-                <a href="{{ url_for('pages.home') }}" class="active">Home</a>
-                <a href="{{ url_for('pages.healthy') }}">Healthy </a>
-                <a href="{{ url_for('pages.vegitarian') }}">Vegitatian </a>
-                <a href="{{ url_for('pages.baking') }}">Baking </a>
-                <a href="{{ url_for('pages.miscellaneous') }}">Miscellaneous</a>
-                <a href="#about">About</a>
+                {{render_link(url_for('pages.home'), 'Home', '', '/')}}
+                {{render_link(url_for('pages.healthy'), 'Healthy', '', '/healthy')}}
+                {{render_link(url_for('pages.healthy'), 'Vegitatian', '', '/vegitarian')}}
+                {{render_link(url_for('pages.baking'), 'Baking', '', '/baking')}}
+                {{render_link(url_for('pages.miscellaneous'), 'Miscellaneous', '', '/miscellaneous')}}
+                {{render_link(url_for('pages.miscellaneous'), 'About', '', '/about')}}
+                
                 <!-- <a href="#about">Create</a> -->
             </div>
             <!-- search box for mobile devices -->

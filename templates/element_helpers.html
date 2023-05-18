@@ -1,0 +1,4 @@
+<!-- this macro is created to append active class into the links to centralize the logic -->
+{% macro render_link(link, label, classes, active_path) %}
+    <a href="{{ link }}" class="{{ classes }}{% if request.path == active_path %} active{% endif %}">{{ label }}</a>
+{% endmacro %}
