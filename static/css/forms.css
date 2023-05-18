@@ -116,7 +116,7 @@
     padding-right: 2em;
 }
 
-.add-f-group-item a, .delete-f-group-item a {
+.add-f-group-item a {
     display: inline-block;
     padding: 0.2em 0.5em;
     background-color: #eaeaea;
