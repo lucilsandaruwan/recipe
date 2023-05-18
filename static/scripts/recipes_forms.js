@@ -3,7 +3,7 @@
 function add_ingradient(element) {
     /* the function to call from add ingradient link */
     // place holder for the new item number
-    newIngNumber = "${newIngNumber}"
+    newIngNumber = "__newIngNumber"
     // compose the html content to append to the page
     htmlString = `<div class="field-list">
     <div class="form-group-lable">Ingredient ${newIngNumber}</div>
@@ -39,7 +39,7 @@ function add_ingradient(element) {
 function add_method(element) {
     /* the function to call from add method step link */
     // place holder for the new item number
-    newIngNumber = "${newIngNumber}"
+    newIngNumber = "__newIngNumber"
     // compose the html content to append to the page
     htmlString = `<div class="field-list">
     <div class="form-group-lable"> Method, Step ${newIngNumber}</div>
@@ -76,9 +76,9 @@ function add_group_item(element, new_item) {
     gParentNode = parentNode.parentNode
     childNodes = gParentNode.querySelectorAll('.field-list');
     // calculate the new ingradient number using the list count
-    newIngNumber = childNodes.length + 1
+    nitm = childNodes.length + 1
     // compose the html content to append to the page
-    htmlString = new_item.replace("${newIngNumber}", newIngNumber);
+    htmlString = new_item.replace(new RegExp(newIngNumber, 'g'), nitm);
     parentNode.insertAdjacentHTML('beforebegin', htmlString);
 }
 
