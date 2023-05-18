@@ -106,7 +106,7 @@ class RecipeCreateForm(FlaskForm):
             image = Image.open(file_path)
             width, height = image.size
             w_by_h = width / height
-            if not 0.667 <= w_by_h <= 1.5:
+            if not 0.667 <= w_by_h <= 2:
                 raise ValidationError('''The image dimensions are not suitable. 
                     Please provide an image with a width-to-height ratio between approximately 2:3 and 3:2.''')
 
