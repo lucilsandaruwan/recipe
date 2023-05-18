@@ -17,4 +17,31 @@ source venv/bin/activate
 ```bash
 pip install Flask Flask-Migrate SQLAlchemy Flask-Login Flask-WTF Pillow email_validator
 ```
+4. Initialize and migrate database
 
+```bash
+flask db init
+flask db migrate
+flask db upgrade
+```
+5. run seed.py (This seed is created to add initial data to the web site like recipe categories)
+
+```bash
+python seed.py
+```
+
+5. 
+    1. ### Run on local environment
+        .Run application on a desire port(i use port as example 80)
+
+    ```bash
+    flask run --port 80
+    ```
+    2. ### Run on a vps as a baground task
+        1. #### Using nohup 
+            1. Pros: Simple and easy to deploy
+            1. Cons: This will lose the application when the computer is restarting.
+            2. Cons: You have to login to vps and navigate to the project directory at each time you need to update.
+        ```bash
+            nohup flask run --port 80 &
+        ```
