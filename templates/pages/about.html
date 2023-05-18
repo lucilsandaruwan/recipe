@@ -18,7 +18,24 @@
         Feel free to check it out to learn more about how this website is set up and deployed.
     </div>
     <h2>Features and task break down</h2>
-    <img class="planning" src="{{ url_for('static', filename='images/site/project_planing.jpg') }}"
+    <div>The excel file for planning can be found in resources directory</div>
+    <div class = "image-container">
+        <img class="planning" src="{{ url_for('static', filename='images/site/project_planing.jpg') }}"/>
+    </div>
+    <h2>UI Highlights</h2>
+    <div class="ui-highlights">
+        <ul>
+            <li>
+                The template is designed with a responsive layout optimized for three different devices:
+                <ol>
+                    <li>Desktop: The layout expands up to a maximum width of 90em (equivalent to 1440px, assuming a default font size of 16px). The main content is contained within a 990px frame, providing a clean and readable white background.</li>
+                    <li>Tablet: The layout adjusts to a maximum width of 100% when the screen size of the device is less than or equal to 48em, ensuring optimal display and usability on tablets.</li>
+                    <li>Mobile Phones: The layout adapts to a maximum width of 100% for screen sizes smaller than or equal to 30em, ensuring a seamless and user-friendly experience on mobile phones.</li>
+                </ol>
+                These responsive design choices are implemented using media queries to ensure the template's adaptability and readability across different devices.
+            </li>
+        </ul>
+    </div>
 </div>
 {% endblock %}
 
