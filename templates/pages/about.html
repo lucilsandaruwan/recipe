@@ -40,8 +40,20 @@
                     The category carousel on the home page is implemented using a sample slider obtained from <a target="_blank" href="https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow_auto">w3schools</a>. The original slider was customized to match the site's layout by adjusting the styles and timing of the JavaScript code.
                 </div>
             </li>
+            <li>
+                <h4>Persistent Footer Placement</h4>
+                <div>
+                    To ensure that the footer remains at the bottom of the page regardless of the content height, several steps were taken:
+                    <ul>
+                        <li>The main `<div>` element, which serves as the parent of the footer, was set to a height of 100vh (viewport height). This ensures that the main content area occupies the available vertical space on the page.</li>
+                        <li>The footer was styled with `position: absolute` and `bottom: 0`, allowing it to be positioned at the bottom of the viewport.</li>
+                        <li>To prevent the footer from overlapping the content on other pages, additional modifications were made. Footer-placeholder elements were added to reserve space equal to the height of the footer, ensuring that the content remains visible and unobstructed.</li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     </div>
+    <h2></h2>
 </div>
 {% endblock %}
 
