@@ -26,14 +26,3 @@ def guest_users_only(func):
 
     return decorated_view
 
-def authenticated_users_only(func):
-    '''A decorator function to redirect unauthenticated users to the login page.'''
-
-    @wraps(func)
-    def decorated_view(*args, **kwargs):
-        if not current_user.is_authenticated:
-            flash('Please log in to access this page', 'info')
-            return redirect(url_for('auth.login'))
-        return func(*args, **kwargs)
-
-    return decorated_view
