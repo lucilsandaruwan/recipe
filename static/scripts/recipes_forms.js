@@ -25,7 +25,7 @@ function add_ingradient(element) {
       
         <div class="form-group ">
           <dt><label for="ingredients-${newIngNumber}-unit">Units</label></dt>
-          <dd><input id="ingredients-${newIngNumber}-unit" name="ingredients-${newIngNumber}-unit" required="" type="text" value="">
+          <dd><input id="ingredients-${newIngNumber}-unit" name="ingredients-${newIngNumber}-unit"  type="text" value="">
           
           </dd>
         </div>
@@ -47,7 +47,7 @@ function add_method(element) {
       
         <div class="form-group ">
           <dt><label for="methods-${newIngNumber}-title">Title</label></dt>
-          <dd><input id="methods-${newIngNumber}-title" name="methods-${newIngNumber}-title" required="" type="text" value="">
+          <dd><input id="methods-${newIngNumber}-title" name="methods-${newIngNumber}-title" type="text" value="">
           
           </dd>
         </div>
