@@ -60,8 +60,8 @@ class IngredientForm(FlaskForm):
     class Meta:
         csrf = False
     name = StringField('Name', validators=[DataRequired(), Length(min = 2, max=50)])
-    quantity = IntegerField("Quantity", validators=[DataRequired(), Optional()])
-    unit = StringField('Units', validators=[Length( max=20)])
+    quantity = IntegerField("Quantity", validators=[DataRequired()])
+    unit = StringField('Units', validators=[Length( max=20), Optional()])
 
 class MethodForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired(), Length(min = 2, max=50), Optional()])
