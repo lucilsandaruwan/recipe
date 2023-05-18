@@ -64,8 +64,8 @@ python seed.py
                 After=network.target
 
                 [Service]
-                User=root
-                Group=root
+                User=user_name
+                Group=user_group
                 WorkingDirectory=/path/to/git/cloned/recipe
                 Environment="FLASK_APP=app.py"
                 ExecStart=/usr/bin/bash -c "git pull && /path/to/git/cloned/recipe/venv/bin/flask run --port 80"
