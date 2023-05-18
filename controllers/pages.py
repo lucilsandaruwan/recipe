@@ -73,6 +73,12 @@ def miscellaneous():
     category = "Miscellaneous"
     return category_listing(category, showing)
 
+@pages_bp.route('/about', methods=['GET'])
+def about():
+    return render_template(
+        'pages/about.html'
+    )
+
 def category_listing(category, showing):
     
     per_page = RecipeService.per_page
