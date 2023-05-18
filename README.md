@@ -9,10 +9,10 @@ To deploy the project, follow the steps below:
 
 ```bash
 python -m venv venv
-source venv/bin/activate
+source venv/bin/activate```
 
 3. Install the dependancies:
 
 ```bash
-pip install Flask Flask-Migrate SQLAlchemy Flask-Login Flask-WTF Pillow email_validator
+pip install Flask Flask-Migrate SQLAlchemy Flask-Login Flask-WTF Pillow email_validator```
 
