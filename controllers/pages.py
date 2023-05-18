@@ -80,7 +80,7 @@ def about():
     ]
     return render_template(
         'pages/about.html'
-        ,app_css = page_css
+        ,page_css = page_css
     )
 
 def category_listing(category, showing):
