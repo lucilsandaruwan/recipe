@@ -116,7 +116,16 @@
     padding-right: 2em;
 }
 
+.add-f-group-item a, .delete-f-group-item a {
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    background-color: #eaeaea;
+    color: #333;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 
-
-
-
+.delete-f-group-item a {
+    color: red;
+}

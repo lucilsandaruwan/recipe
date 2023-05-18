@@ -31,7 +31,7 @@ function add_ingradient(element) {
         </div>
       
     </div>
-    <div class="form-group-action"> <a href="#" onClick="delete_ingradient(this)"> Delete </a></div>
+    <div class="form-group-action delete-f-group-item"> <a href="#" onClick="delete_ingradient(this)"> Delete </a></div>
   </div>`;
   add_group_item(element, htmlString)
 }
@@ -60,7 +60,7 @@ function add_method(element) {
         </div>
       
     </div>
-    <div class="form-group-action"> <a href="#" onclick="delete_ingradient(this)"> Delete </a></div>
+    <div class="form-group-action delete-f-group-item"> <a href="#" onclick="delete_ingradient(this)"> Delete </a></div>
   </div>`;
   add_group_item(element, htmlString)
 }
