@@ -88,3 +88,32 @@ python seed.py
                 ```code
                 systemctl status recipe
                 ```
+    3. Configure nginx to bind a domain
+        1. Creae an A record pointing to the ip of the vps that the application is running (consider the crated domain is "recipe.example.com").
+        2. Create a configuration file in site-available directory (vim /etc/nginx/sites-available/recipe.conf) add add following scripts. The code can be found at the end of  /etc/nginx/sites-available/default file. This step is not required if the application is running on 80. But if the application running on another port, we have to do this. I used 8080 in sample code
+
+        ```bash
+            server {
+                listen 80;
+                server_name recipe.example.com;
+                location / {
+                    proxy_pass http://localhost:8080;
+                    proxy_set_header Host $host;
+                    proxy_set_header X-Real-IP $remote_addr;
+                }
+            }
+        ```
+        3. create a simbolic link to the created file in 
+            /etc/nginx/sites-enabled/
+        ```code
+            ln -s /etc/nginx/sites-available/recipe.conf /etc/nginx/sites-enabled/
+        ```
+        4. Check if any error in the config file
+        ```code
+        sudo nginx -t
+        ```
+        5. Restart nginx if there is no error
+        ```code
+        sudo systemctl reload nginx
+        sudo systemctl restart nginx
+        ```
