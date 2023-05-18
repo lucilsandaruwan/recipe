@@ -56,3 +56,35 @@ python seed.py
                 Complexity of configuration: Setting up a systemd service requires writing a service unit file with specific configurations. This may involve understanding and modifying parameters such as service dependencies, environment variables, and startup conditions. The initial setup process can be more complex compared to using simpler methods like nohup.
 
                 System-specific limitations: Systemd services may have limitations or compatibility issues depending on the specific operating system or distribution. Some advanced features or configurations might not be available in older versions of systemd or on certain platforms, potentially limiting the flexibility and portability of your application.
+            3. steps
+                1. Create a file named recipe.service in system directory as "vim /etc/systemd/system/recipe.service" using following code
+                ```bash
+                [Unit]
+                Description=Recipe
+                After=network.target
+
+                [Service]
+                User=root
+                Group=root
+                WorkingDirectory=/path/to/git/cloned/recipe
+                Environment="FLASK_APP=app.py"
+                ExecStart=/usr/bin/bash -c "git pull && /path/to/git/cloned/recipe/venv/bin/flask run --port 80"
+                ExecReload=/bin/kill -s HUP $MAINPID
+                ExecStop=/bin/kill -s TERM $MAINPID
+                Restart=always
+
+                [Install]
+                WantedBy=multi-user.target
+                ```
+                2. To apply the changes made to the systemd service, the systemd daemon shold be reloaded. This can be done by running the following command:
+                ```bash
+                systemctl daemon-reload
+                ```
+                3. Finally, run the following command to start newly created service
+                ```code
+                systemctl restart recipe
+                ```
+                4. To see the status of service, following command can be used
+                ```code
+                systemctl status recipe
+                ```

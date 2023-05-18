@@ -140,3 +140,6 @@ instance
 
 #upload file
 static/images/uploads/
+
+#srvice file
+resources/recipe.service
