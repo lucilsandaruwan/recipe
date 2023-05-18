@@ -75,8 +75,12 @@ def miscellaneous():
 
 @pages_bp.route('/about', methods=['GET'])
 def about():
+    app_css = [
+        'css/about.css'
+    ]
     return render_template(
         'pages/about.html'
+        ,app_css = app_css
     )
 
 def category_listing(category, showing):
