@@ -43,6 +43,7 @@ python seed.py
                 Simple and easy to deploy: It's straightforward to start a process using nohup, as it allows you to run a command or script in the background without being tied to a terminal session.
             1. Cons 
                 Persistence: When the computer restarts, any processes running under nohup will be terminated. This means that if you rely solely on nohup, you'll lose your application upon a system restart.
+                
                 Manual updates: To update the application, you need to log in to the VPS (Virtual Private Server) and navigate to the project directory each time. This manual process can be cumbersome and time-consuming, especially if frequent updates are required.
         ```bash
             nohup flask run --port 80 &
