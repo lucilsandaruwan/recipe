@@ -9,11 +9,11 @@
   {%if recipe.ingredients %}
     <div class="group-container">
         <div class="group-lable"><h3>Ingredients</h3></div>
-        <ol>
+        <ul>
             {%for i in recipe.ingredients %}
                 <li>{{i.quantity}}{{i.unit}} {{i.name}}</li>
             {%endfor%}
-        </ol>
+        </ul>
     </div>
   {%endif%}
   {%if recipe.methods %}
