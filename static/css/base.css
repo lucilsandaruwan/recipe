@@ -305,3 +305,7 @@ body {
     border-radius: 4px;
 }
 
+/* style the description section on listing pages*/
+.cat-listing-showing  {
+    color: #a39898;
+}
